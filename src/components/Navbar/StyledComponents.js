@@ -13,6 +13,7 @@ export const StyledSearchInput = styled(TextField)(({ theme }) => ({
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     
       width: '100%',
+     
       '& fieldset': {
         border: 'none',
       },

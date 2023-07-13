@@ -15,7 +15,8 @@ import BasicModal from "./Modal";
 import  CustomMenu from "./Profilemenu";
 import IconButton from '@mui/material/IconButton';
 import { useRef, useEffect } from 'react';
-import {StyledSearchInput , Slash ,Search,SearchIconWrapper, StyledInputBase} from "./StyledComponents"
+import {StyledSearchInput , Slash ,Search,SearchIconWrapper, StyledInputBase} from "./StyledComponents";
+import Paper from '@mui/material/Paper';
 
 
 
@@ -31,6 +32,11 @@ const Navbar = () => {
 
   const inputRef = useRef(null);
   console.log(navbarBg)
+  
+  const paperStyle = {
+    marginTop: '10px', // Adjust the top margin value as needed
+    backgroundColor:"grey"
+  };
 
 
 
@@ -69,7 +75,7 @@ const Navbar = () => {
 
   return (
     <>
-    <AppBar  sx={{ bgcolor:"transparent" , boxShadow:"none",color:"black" }}>
+    <AppBar  sx={{ bgcolor:"transparent" , boxShadow:"none",color:"black" ,zIndex:1100}}>
         <Toolbar sx={{justifyContent:"space-between"}} > 
         <Box sx={{height:"4.3rem"}} > <img src="logo.png" alt='logo' style={{height:"100%"}}></img> </Box>
           
@@ -90,10 +96,14 @@ const Navbar = () => {
         freeSolo
         id="free-solo-2-demo"
         disableClearable
+        PaperComponent={props => (
+          <Paper {...props} sx={paperStyle} />
+        )}
         options={top100names.map((option) => option.label)}
         renderInput={(params) => (
           <StyledSearchInput
             {...params}
+          
             inputRef={inputRef}
             placeholder='Search items,collections and accounts'
             InputProps={{
