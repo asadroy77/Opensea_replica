@@ -75,7 +75,7 @@ const Navbar = () => {
 
   return (
     <>
-    <AppBar  sx={{ bgcolor:"transparent" , boxShadow:"none",color:"black" ,zIndex:1100}}>
+    <AppBar  sx={{ bgcolor:"transparent" , boxShadow:"none",color:"black" }}>
         <Toolbar sx={{justifyContent:"space-between"}} > 
         <Box sx={{height:"4.3rem"}} > <img src="logo.png" alt='logo' style={{height:"100%"}}></img> </Box>
           
