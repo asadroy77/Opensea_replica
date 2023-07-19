@@ -1,21 +1,50 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import MediaCard  from "./Card";
 import Grid from '@mui/material/Grid';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import IconButton from '@mui/material/IconButton';
+import { DataGrid } from '@mui/x-data-grid';
+import { Typography } from '@mui/material';
 
 
 
 
 const Home = () => {
 
+  const columns = [
+    { field: 'rank', headerName: 'Rank', width: 90 ,  sortable: false,
+    filterable: false,
+    
+  
+  },
+    { field: 'collection', headerName: 'Collection',
+     renderCell: (params) => (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <img src={params.row.image} alt="Image" style={{ width: '60px', height: '70px', margin: '10px' }} />
+        <span>{params.row.name}</span>
+      </div>
+    ), width: 300 ,  sortable: false,
+    filterable: false },
+    { field: 'fprice', headerName: 'Floor price', width: 100 ,  sortable: false,
+    filterable: false },
+    { field: 'volume', headerName: 'Volume', width: 100 , sortable: false,
+    filterable: false } ]
 
+
+    const rows = [
+      { id:1, rank: 1, name: "james"  ,image:"favicon.png", fprice: 'Jon', volume: 35 },
+      { id:2, rank: 2, name: 'Lannister',image:"favicon.png", fprice: 'Cersei', volume: 42 },
+      { id:3, rank: 3, name: 'Lannister',image:"favicon.png", fprice: 'Jaime', volume: 45 },
+      { id:4, rank: 4, name: 'Stark',image:"favicon.png", fprice: 'Arya', volume: 16 },
+      { id:5, rank: 5, name: 'Targaryen',image:"favicon.png", fprice: 'Daenerys', volume: 68 },
+      { id:6, rank: 6, name: 'Melisandre',image:"favicon.png", fprice: null, volume: 150 },
+      { id:7, rank: 7, name: 'Clifford',image:"favicon.png", fprice: 'Ferrara', volume: 44 },
+      { id:8, rank: 8, name: 'Frances',image:"favicon.png", fprice: 'Rossini', volume: 36 },
+      { id:9, rank: 9, name: 'Roxie',image:"favicon.png", fprice: 'Harvey', volume: 65 },
+    ];
 
   const responsive = {
     desktop: {
@@ -108,7 +137,87 @@ alignItems:"center",width:"100%"}}>
 
 </Box>
   
-  </Grid>
+</Grid>
+
+
+<Grid item sx={{display:"flex",justifyContent:"space-between" ,gap:1}}>
+
+  <Box sx={{  width: '95%' }}>
+
+  <DataGrid
+        sx={{
+          
+          '& .MuiDataGrid-root': {
+            border: 'none',
+          },
+          '& .MuiDataGrid-row':{ maxHeight:"80px !important"},
+          '& .MuiDataGrid-row:focus': {
+            border: 'none',
+          },
+          '& .MuiDataGrid-cell:focus': {
+            outline: 'none',
+          },
+          '& .MuiDataGrid-cell' : { maxHeight:"80px !important"} ,
+
+          '& .MuiDataGrid-columnHeader:focus' :{
+            outline: 'none'
+          },
+          '& .MuiDataGrid-withBorderColor' : {
+            border:"none"
+          }
+
+        }}
+
+        hideFooter
+        autoHeight
+        disableRowSelectionOnClick={false}
+        rows={rows}
+        columns={columns}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 10,
+            },
+          },
+        }}
+        pageSizeOptions={[10]}
+       disableColumnMenu
+       showCellVerticalBorder={false}
+       showColumnVerticalBorder={false}
+       disableColumnSelector
+       
+      />
+  
+  </Box>
+
+
+  <Box sx={{ height: 500, width:'95%' }}>
+
+
+  <DataGrid
+        rows={rows}
+        columns={columns}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 5,
+            },
+          },
+        }}
+        pageSizeOptions={[5]} 
+     disableColumnMenu
+      />
+    
+  </Box>
+
+
+
+
+</Grid>
+
+
+
+
 </Grid>
 
 
