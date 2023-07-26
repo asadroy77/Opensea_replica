@@ -31,7 +31,7 @@ const Navbar = () => {
 
 
   const inputRef = useRef(null);
-  console.log(navbarBg)
+  
   
   const paperStyle = {
     marginTop: '10px', // Adjust the top margin value as needed

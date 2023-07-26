@@ -1,23 +1,110 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import MediaCard  from "./Card";
 import Grid from '@mui/material/Grid';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { DataGrid } from '@mui/x-data-grid';
 import { Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Button from '@mui/material/Button';
+import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
+import { useEffect } from 'react';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Toolbar from '@mui/material/Toolbar';
 
 
+const CusExpandMoreOutlinedIcon = styled(ExpandMoreOutlinedIcon)(({ open }) => ({
+    ...(!open && {
+    transition: "transform 1s ease" , /* Smoothly animate the transform property */
+    transform: "rotate(360deg)",
+   
+    
+   }  )
+}));
 
+const StyledTabs = styled((props) => (
+  <Tabs
+    {...props}
+    TabIndicatorProps={{ children: <Box  className="MuiTabs-indicatorSpan" /> }}
+  />
+))({
+  '& .MuiTabs-indicator': {
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    height:"94%",
+    position:"absolute",
+    zIndex: 20,
+    width: '100%',
+   color:"black",
+   borderRadius:"0.5rem",
+   marginBottom:"0.1rem"
+  },
+  '& .MuiTabs-indicatorSpan': {
+    color:"black",
+    width: '100%',
+    backgroundColor: 'white',
+    borderRadius:"0.5rem",
+    
+   
+   
+  },
+});
+
+const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
+  ({ theme }) => ({
+    textTransform: 'none', 
+    minWidth: 0,
+    zIndex: 26,
+    fontWeight: theme.typography.fontWeightRegular,
+    fontSize: theme.typography.pxToRem(17),
+    margin:"0.1rem",
+    color: 'black',
+    '&.Mui-selected': {
+      color:'black',
+    },
+    // '&.Mui-focusVisible': {
+    //   backgroundColor: 'rgba(10, 195, 8, 0.32)',
+    // },
+  }),
+);
 
 const Home = () => {
+  
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  var  open = Boolean(anchorEl);
+   
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(false);
+   
+  };
+
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+
+  const [value1, setValue1] = React.useState(0);
+
+  const handleChange1 = (event, newValue) => {
+    setValue1(newValue);
+  };
+
+ 
 
   const columns = [
     { field: 'rank', headerName: 'Rank', width: 90 ,  sortable: false,
     filterable: false,
-    
   
   },
     { field: 'collection', headerName: 'Collection',
@@ -139,9 +226,76 @@ alignItems:"center",width:"100%"}}>
   
 </Grid>
 
+<Grid item >
+  <Toolbar  sx={{display:"flex",justifyContent:"space-between"}} >
+  <StyledTabs
+          sx={{ borderRadius: 2 , bgcolor:"#F3F3F3" }}
+          value={value}
+          onChange={handleChange}
+          aria-label="styled tabs example"
+          
+        >
+          <StyledTab label="Workflows" />
+          <StyledTab label="Datasets" />
+         
+        </StyledTabs>
+    
+   
+      
+        <StyledTabs
+          sx={{ borderRadius: 2 , bgcolor:"#F3F3F3",ml:"auto" }}
+          value={value1}
+          onChange={handleChange1}
+          aria-label="styled tabs example"
+          
+        >
+          <StyledTab label="1h" />
+          <StyledTab label="6h" />
+          <StyledTab label="7h" />
+          <StyledTab label="24h" />
+         
+        </StyledTabs>
 
-<Grid item sx={{display:"flex",justifyContent:"space-between" ,gap:1}}>
+      
+       
+        <Button sx={{ml:5, color:"black",bgcolor:"#F3F3F3" ,borderRadius:"2" ,"&:hover":{bgcolor:"transparent"}}} disableRipple variant="text"  id="demo-positioned-button"
+        aria-controls={open ? 'demo-positioned-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick} endIcon={<CusExpandMoreOutlinedIcon open={open}/>} > 
+        Menu
+      </Button>
 
+      </Toolbar>
+
+      <Menu
+        id="demo-positioned-menu"
+        aria-labelledby="demo-positioned-button"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+      >
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem>
+      </Menu>
+
+</Grid>
+
+
+<Grid item sx={{display:"flex",flexDirection:"column"}}>
+  
+
+
+<Box sx={{display:"flex",justifyContent:"space-between" ,gap:1 , overflowX:"scroll"}}> 
   <Box sx={{  width: '95%' }}>
 
   <DataGrid
@@ -192,8 +346,6 @@ alignItems:"center",width:"100%"}}>
 
 
   <Box sx={{ height: 500, width:'95%' }}>
-
-
   <DataGrid
         rows={rows}
         columns={columns}
@@ -209,23 +361,10 @@ alignItems:"center",width:"100%"}}>
       />
     
   </Box>
-
-
-
-
+  </Box>
 </Grid>
 
-
-
-
 </Grid>
-
-
-
- 
-
-
-
 
     </>
   )
