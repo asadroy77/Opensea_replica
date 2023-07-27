@@ -16,15 +16,23 @@ import { useEffect } from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 
 const CusExpandMoreOutlinedIcon = styled(ExpandMoreOutlinedIcon)(({ open }) => ({
-    ...(!open && {
-    transition: "transform 1s ease" , /* Smoothly animate the transform property */
-    transform: "rotate(360deg)",
+    // ...(!open && {
+    
+     /* Smoothly animate the transform property */
+     "&:hover" :{
+      transition: "transform 1s ease" ,
+      transform: "rotate(360deg)",
+     }
+  
    
     
-   }  )
+  //  } 
+    // )
 }));
 
 const StyledTabs = styled((props) => (
@@ -76,6 +84,16 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 
 const Home = () => {
   
+  const theme  = useTheme()
+  const md = useMediaQuery(theme.breakpoints.down("md"))
+
+  const sm = useMediaQuery(theme.breakpoints.down("sm"))
+
+ console.log("md" + md)
+ console.log("sm" + sm)
+ 
+
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   var  open = Boolean(anchorEl);
    
@@ -105,12 +123,12 @@ const Home = () => {
   const columns = [
     { field: 'rank', headerName: 'Rank', width: 90 ,  sortable: false,
     filterable: false,
-  
+  editable:false
   },
     { field: 'collection', headerName: 'Collection',
      renderCell: (params) => (
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <img src={params.row.image} alt="Image" style={{ width: '60px', height: '70px', margin: '10px' }} />
+        <img src={params.row.image} alt="Image" style={{ width: '60px', height: '70px', margin: '15px' }} />
         <span>{params.row.name}</span>
       </div>
     ), width: 300 ,  sortable: false,
@@ -140,12 +158,12 @@ const Home = () => {
       slidesToSlide: 3 // optional, default to 1.
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 1024, min: 700 },
       items: 2,
       slidesToSlide: 2 // optional, default to 1.
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 700, min: 0 },
       items: 1,
       slidesToSlide: 1 // optional, default to 1.
     }
@@ -154,9 +172,9 @@ const Home = () => {
 
   return (<>
  
-  <Grid container direction="column">
+  <Grid container  direction="column">
   {/* item 1 */}
-   <Grid item sx={{position:"relative", width:"100%",
+   <Grid item sx={{position:"relative",
   height: "100vh",
   backgroundImage: `url("cover.png")`,
   backgroundPosition: "center",
@@ -169,9 +187,9 @@ const Home = () => {
    
 
 <Box sx={{display:"flex",flexDirection:"column",zindex:3,position:"absolute",top:"20vh",
-alignItems:"center",width:"100%"}}>
+alignItems:"center" ,width:"100%"}}>
  
- <Box sx={{width:"100%"}}>
+ <Box sx={{display:"flex" ,justifyContent:"flex-start",width:"100%"}}>
     <Stack spacing={2} direction="row"sx={{mx:5}} >   
         <Button sx={{color:"grey"}} variant="text">All </Button>
         <Button sx={{color:"grey"}} variant="text">Drops</Button>
@@ -192,11 +210,10 @@ alignItems:"center",width:"100%"}}>
 
 </Box>
 
-</Grid> 
+</Grid > 
 
 {/* item 2 */}
-   <Grid item sx={{display:"flex",my:5,justifyContent:"center"}} >
-
+   <Grid item  sx={{display:"flex",justifyContent:"center",my:5}} > 
 <Box sx={{width:"85vw"}}> 
 
 <Carousel
@@ -224,10 +241,10 @@ alignItems:"center",width:"100%"}}>
 
 </Box>
   
-</Grid>
+ </Grid> 
 
-<Grid item >
-  <Toolbar  sx={{display:"flex",justifyContent:"space-between"}} >
+<Grid  item sx={{display:"flex",justifyContent:"space-between",my:5}}  >
+ <Box>
   <StyledTabs
           sx={{ borderRadius: 2 , bgcolor:"#F3F3F3" }}
           value={value}
@@ -240,10 +257,12 @@ alignItems:"center",width:"100%"}}>
          
         </StyledTabs>
     
-   
+  </Box>
       
+
+<Box>
         <StyledTabs
-          sx={{ borderRadius: 2 , bgcolor:"#F3F3F3",ml:"auto" }}
+          sx={{ borderRadius: 2 , bgcolor:"#F3F3F3"}}
           value={value1}
           onChange={handleChange1}
           aria-label="styled tabs example"
@@ -255,20 +274,17 @@ alignItems:"center",width:"100%"}}>
           <StyledTab label="24h" />
          
         </StyledTabs>
-
-      
+</Box>
        
-        <Button sx={{ml:5, color:"black",bgcolor:"#F3F3F3" ,borderRadius:"2" ,"&:hover":{bgcolor:"transparent"}}} disableRipple variant="text"  id="demo-positioned-button"
+             
+        <Button sx={{ color:"black",bgcolor:"#F3F3F3" ,borderRadius:"2" ,"&:hover":{bgcolor:"transparent"}}} disableRipple variant="text"  id="demo-positioned-button"
         aria-controls={open ? 'demo-positioned-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick} endIcon={<CusExpandMoreOutlinedIcon open={open}/>} > 
         Menu
       </Button>
-
-      </Toolbar>
-
-      <Menu
+        <Menu
         id="demo-positioned-menu"
         aria-labelledby="demo-positioned-button"
         anchorEl={anchorEl}
@@ -288,22 +304,24 @@ alignItems:"center",width:"100%"}}>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
 
+
+
 </Grid>
 
 
-<Grid item sx={{display:"flex",flexDirection:"column"}}>
+<Grid item >
   
-
-
-<Box sx={{display:"flex",justifyContent:"space-between" ,gap:1 , overflowX:"scroll"}}> 
-  <Box sx={{  width: '95%' }}>
+<Grid container > 
+  <Grid item xs={12} md={12} lg={6}>
 
   <DataGrid
         sx={{
           
           '& .MuiDataGrid-root': {
             border: 'none',
+            
           },
+          "& .MuiDataGrid-columnSeparator":{display:"none"},
           '& .MuiDataGrid-row':{ maxHeight:"80px !important"},
           '& .MuiDataGrid-row:focus': {
             border: 'none',
@@ -342,11 +360,12 @@ alignItems:"center",width:"100%"}}>
        
       />
   
-  </Box>
+  </Grid>
 
 
-  <Box sx={{ height: 500, width:'95%' }}>
+  <Grid item xs={12} md={12} lg={6}>
   <DataGrid
+        autoHeight
         rows={rows}
         columns={columns}
         initialState={{
@@ -360,8 +379,8 @@ alignItems:"center",width:"100%"}}>
      disableColumnMenu
       />
     
-  </Box>
-  </Box>
+  </Grid>
+  </Grid>
 </Grid>
 
 </Grid>

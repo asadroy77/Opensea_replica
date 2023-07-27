@@ -1,0 +1,27 @@
+@mixin variant2 {
+    border-radius: 100px;
+}
+
+
+@mixin variant1 {
+    border-radius: 5px;
+}
+
+
+.div1 {
+    background-color: blue;
+    height: 200px;
+    width: 200px;
+
+    &[variant="1"]{
+        @include variant1
+    }
+
+    &[variant="2"]{
+        @include variant2
+    }
+}
+
+
+
+
