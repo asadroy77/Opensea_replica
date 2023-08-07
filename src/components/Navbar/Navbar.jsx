@@ -17,11 +17,23 @@ import IconButton from '@mui/material/IconButton';
 import { useRef, useEffect } from 'react';
 import {StyledSearchInput , Slash ,Search,SearchIconWrapper, StyledInputBase} from "./StyledComponents";
 import Paper from '@mui/material/Paper';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 
 
 
 const Navbar = () => {
+  const theme  = useTheme()
+     
+  const lg = useMediaQuery(theme.breakpoints.down("lg"))
+
+  const md = useMediaQuery(theme.breakpoints.down("md"))
+
+  const mdup = useMediaQuery(theme.breakpoints.up("md"))
+
+  const sm = useMediaQuery(theme.breakpoints.down("sm"))
+
 
 
   const [open, setOpen] = useState(false);
@@ -87,7 +99,7 @@ const Navbar = () => {
     <Typography variant='h6' > Stats </Typography> 
         </Box>
 
-        <Box sx={{flexGrow:1.8}}>   <Search>
+        <Box sx={{display: md ? "none":""  , flexGrow:1.8}}>   <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -116,8 +128,19 @@ const Navbar = () => {
         <Slash> <Typography sx={{ color:"white"}} variant='h6'> / </Typography> </Slash>
           </Search></Box>
 
+        <Box sx={{display: md ? "":"none" , flexGrow:1.8}}>  </Box>
 
-          <Box sx={{backgroundColor:"gray" , borderRadius:"10px" ,flexGrow:0.2,py:0.7}} > 
+        <Box sx={{backgroundColor:"gray" , borderRadius:"10px",ml:1 }}>
+       
+        <Box> 
+        <IconButton aria-label="search" sx={{display: md ? "":"none",py:2,px:1.5}}>
+        <SearchIcon/> 
+        </IconButton>
+        </Box>
+
+        </Box>
+
+          <Box sx={{backgroundColor:"gray" , display: lg ? "none":"" , borderRadius:"10px" ,flexGrow:0.2,py:0.7}} > 
           <Box sx={{display:"flex",justifyContent:"space-evenly",alignItems:"center"}}>     
          
           

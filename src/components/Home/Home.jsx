@@ -84,7 +84,12 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 
 const Home = () => {
   
+  
   const theme  = useTheme()
+
+   
+  const lg = useMediaQuery(theme.breakpoints.down("lg"))
+
   const md = useMediaQuery(theme.breakpoints.down("md"))
 
   const sm = useMediaQuery(theme.breakpoints.down("sm"))
@@ -187,10 +192,10 @@ const Home = () => {
    
 
 <Box sx={{display:"flex",flexDirection:"column",zindex:3,position:"absolute",top:"20vh",
-alignItems:"center" ,width:"100%"}}>
+alignItems:"center", width:"100%"}}>
  
- <Box sx={{display:"flex" ,justifyContent:"flex-start",width:"100%"}}>
-    <Stack spacing={2} direction="row"sx={{mx:5}} >   
+ <Box sx={{display:"flex" ,justifyContent:  sm ? "center":"flex-start",width: "100%" }}>
+    <Stack spacing={2} direction="row" >   
         <Button sx={{color:"grey"}} variant="text">All </Button>
         <Button sx={{color:"grey"}} variant="text">Drops</Button>
         <Button sx={{color:"grey"}} variant="text">Characters</Button>
@@ -199,7 +204,7 @@ alignItems:"center" ,width:"100%"}}>
 
 </Box>
 
-          <Box sx={{width:"70vw",borderRadius:5,overflow: "hidden",my:5 }}>
+          <Box sx={{width:  sm ? "85vw":"70vw",borderRadius:5,overflow: "hidden",my:5 }}>
         <iframe width="100%" height="315" 
         src="https://www.youtube.com/embed/rrLAg7xNERA?controls=0"
         title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
@@ -214,7 +219,7 @@ alignItems:"center" ,width:"100%"}}>
 
 {/* item 2 */}
    <Grid item  sx={{display:"flex",justifyContent:"center",my:5}} > 
-<Box sx={{width:"85vw"}}> 
+<Box sx={{width:"80vw"}}> 
 
 <Carousel
  
@@ -249,9 +254,8 @@ alignItems:"center" ,width:"100%"}}>
           sx={{ borderRadius: 2 , bgcolor:"#F3F3F3" }}
           value={value}
           onChange={handleChange}
-          aria-label="styled tabs example"
-          
-        >
+          aria-label="styled tabs example" >
+
           <StyledTab label="Workflows" />
           <StyledTab label="Datasets" />
          
