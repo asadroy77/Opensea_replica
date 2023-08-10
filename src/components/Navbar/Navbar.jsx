@@ -47,7 +47,8 @@ const Navbar = () => {
   
   const paperStyle = {
     marginTop: '10px', // Adjust the top margin value as needed
-    backgroundColor:"grey"
+    backgroundColor:"rgba(255, 255, 255, 0.12)",
+    color:navbarBg ? "black" : "white"
   };
 
 
@@ -87,7 +88,7 @@ const Navbar = () => {
 
   return (
     <>
-    <AppBar  sx={{ bgcolor: navbarBg ? "white" : "transparent" , boxShadow:"none",color:"black" }}>
+    <AppBar  sx={{ bgcolor: navbarBg ? "white" : "transparent" , boxShadow:"none",color: navbarBg ? "black" : "white" }}>
         <Toolbar sx={{justifyContent:"space-between"}} > 
         <Box sx={{height:"4.3rem"}} > <img src="logo.png" alt='logo' style={{height:"100%"}}></img> </Box>
           
@@ -99,7 +100,8 @@ const Navbar = () => {
     <Typography variant='h6' > Stats </Typography> 
         </Box>
 
-        <Box sx={{display: md ? "none":""  , flexGrow:1.8}}>   <Search>
+        <Box sx={{display: md ? "none":""  , flexGrow:1.8}}>   <Search sx={{color:navbarBg ? "black" : "white",
+      border:navbarBg ? "solid 1px grey" :"none"}}> 
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -108,6 +110,7 @@ const Navbar = () => {
         freeSolo
         id="free-solo-2-demo"
         disableClearable
+        
         PaperComponent={props => (
           <Paper {...props} sx={paperStyle} />
         )}
@@ -115,22 +118,22 @@ const Navbar = () => {
         renderInput={(params) => (
           <StyledSearchInput
             {...params}
-          
             inputRef={inputRef}
             placeholder='Search items,collections and accounts'
             InputProps={{
               ...params.InputProps,
               type: 'search',
+              sx:{color: navbarBg ? "black" : "white"}
             }}
           />
         )}/>
 
-        <Slash> <Typography sx={{ color:"white"}} variant='h6'> / </Typography> </Slash>
+        <Slash> <Typography sx={{ color: "white"}} variant='h6'> / </Typography> </Slash>
           </Search></Box>
 
         <Box sx={{display: md ? "":"none" , flexGrow:1.8}}>  </Box>
 
-        <Box sx={{backgroundColor:"gray" , borderRadius:"10px",ml:1 }}>
+        <Box sx={{backgroundColor:"rgba(255, 255, 255, 0.12)" , borderRadius:"10px",ml:1 }}>
        
         <Box> 
         <IconButton aria-label="search" sx={{display: md ? "":"none",py:2,px:1.5}}>
@@ -140,11 +143,13 @@ const Navbar = () => {
 
         </Box>
 
-          <Box sx={{backgroundColor:"gray" , display: lg ? "none":"" , borderRadius:"10px" ,flexGrow:0.2,py:0.7}} > 
+          <Box sx={{backgroundColor:"rgba(255, 255, 255, 0.12)" ,
+          border:navbarBg ? "solid 1px grey" :"none",
+           display: lg ? "none":"" , borderRadius:"10px" ,flexGrow:0.2,py:0.7}} > 
           <Box sx={{display:"flex",justifyContent:"space-evenly",alignItems:"center"}}>     
          
           
-          <Button  onClick={handleOpen} color='inherit' sx={{textTransform: 'none' }} startIcon={ <WalletIcon/> } >  <Typography variant="h6"> Connect Wallet </Typography></Button>
+          <Button  onClick={handleOpen}  sx={{textTransform: 'none',color:navbarBg ? "black" : "white" }} startIcon={ <WalletIcon/> } >  <Typography variant="h6"> Connect Wallet </Typography></Button>
          
           
            <Divider  orientation="vertical"  flexItem  />
@@ -152,7 +157,7 @@ const Navbar = () => {
            <CustomMenu>
 
 
-           <IconButton >
+           <IconButton sx={{color:navbarBg ? "black" : "white"}} >
            <AccountCircleOutlinedIcon/>
           </IconButton> 
          
@@ -162,10 +167,10 @@ const Navbar = () => {
          </Box>
 
 
-         <Box sx={{backgroundColor:"gray" , borderRadius:"10px",ml:1 }}>
+         <Box sx={{backgroundColor:"rgba(255, 255, 255, 0.12)" , borderRadius:"10px",ml:1,border:navbarBg ? "solid 1px grey" :"none" }}>
           <Box> 
         
-          <IconButton aria-label="cart" sx={{py:2,px:1.5}}>
+          <IconButton aria-label="cart" sx={{py:2,px:1.5,color:navbarBg ? "black" : "white", bgcolor:"transparent"}}>
           <ShoppingCartOutlinedIcon/>
           </IconButton>
          </Box>

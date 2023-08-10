@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import { Paper, Typography } from '@mui/material';
+import { Collapse, Paper, Typography } from '@mui/material';
 import { Box } from '@mui/material';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import TuneIcon from '@mui/icons-material/Tune';
@@ -11,9 +11,23 @@ import Tab from '@mui/material/Tab';
 import { styled } from '@mui/material/styles';
 import { customeColours } from '../../Theme/Theme';
 import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
 
 
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+
+const MyCustomCollapse = ({ children, ...props }) => {
+  return <Collapse {...props} orientation='horizontal'>{children}</Collapse>;
+};
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -62,10 +76,40 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
   }),
 );
 
+//  = styled(Box)
+//   {({ theme , prop1}) => 
+  
+//  )} 
+  
+//   (prop1 && {
+//     width:"100px"
+    
+//   } )
+  
+const StyledBox=  styled(Box)(({ prop1 }) => ({
+  // Conditional styling when prop1 is truthy
+  
+  transition: "width 0.5s ease-in-out" ,// Add 'none' for no transition
+  width: prop1 ? '11rem' : '4rem', 
+}));
 
 const Layout = () => {
 
   const [value, setValue] = React.useState(0);
+  const [value2, setValue2] = React.useState(false);
+
+
+  const [checked, setChecked] = React.useState(false);
+
+  const handleChangeMenu = () => {
+    setChecked((prev) => !prev);
+  };
+
+
+  
+  const handleChange2 = (e) => {
+    setValue2(!value2);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -74,25 +118,39 @@ const Layout = () => {
 
   // "#EBECF1"
 
-  return (<>  <Box sx={{ width: '100%',bgcolor:"#EBECF1" }}>
+  return (<>  <Box sx={{ width: '100%',bgcolor:"#EBECF1",my:5 }}>
   <Grid container   columnSpacing={1}>
     <Grid item >
-      <Box sx={{background:customeColours.gradient,height:"100vh",borderRadius:"5px",display:'flex',
+      <StyledBox onClick={handleChange2} prop1={value2} sx={{background:customeColours.gradient,height:"100vh",borderRadius:"5px",display:'flex',
     flexDirection:"column" , justifyContent:"space-between"}}>
 
          <Box > <ListAltIcon sx={{color:"white",py:2,px:2}}></ListAltIcon> </Box>
 
-      <Box> <TuneIcon sx={{color:"white",py:2,px:2}}></TuneIcon> </Box>
+      <Box sx={{display:"flex"}}>
+         <Box>
+         <IconButton   size="small" onMouseEnter={handleChangeMenu} onMouseLeave={handleChangeMenu}>
+         <TuneIcon sx={{color:"white",py:2,px:2}}></TuneIcon></IconButton> 
+         </Box>
+
+  <Box onMouseEnter={handleChangeMenu} onMouseLeave={handleChangeMenu} sx={{textAlign:"center", color:"white", display: (checked && value2) ? "block": "none" ,alignSelf:"flex-end"}}>
+    
+     <Collapse  in={checked}><Box sx={{textAlign:"left"}}> <Box> <Typography variant='p'>Profile</Typography></Box>
+     <Box> <Typography variant='p'>Sign Up</Typography></Box>
+    
+     
+       </Box></Collapse> 
+       </Box>
+       </Box>
 
       <Box>  <PersonOutlineIcon sx={{color:"white",py:2,px:2}}></PersonOutlineIcon>  </Box>
- </Box>
+ </StyledBox>
     </Grid>
 
     
-    <Grid item xs={11} sx={{borderRadius:"5px"}}>
-      <Box  sx={{ bgcolor:"#FFFFFF",borderRadius:"5px",height:"100vh"}}>
+    <Grid item xs={10} sx={{borderRadius:"5px"}}>
+      <Box  sx={{ bgcolor:"#FFFFFF",borderRadius:"5px",height:"100%"}}>
 
-    <Grid container item rowSpacing={2} justifyContent="center" alignContent={"flex-start"} >
+    <Grid container item rowSpacing={1}  justifyContent="center"  >
 
      <Grid item  xs={11}>
       <Box sx={{borderRadius:"5px",display:"flex",justifyContent:"space-between" }}> 
@@ -119,6 +177,212 @@ const Layout = () => {
          </Box> 
     
     </Grid>
+
+
+    <Grid container item xs={11} columnSpacing={1} rowSpacing={2}  >
+     
+
+ <Grid item xs={4}>   
+       <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options={["Askmo","sdae"]}
+          sx={{ width: "100%" }}
+          renderInput={(params) => <TextField {...params} size="small" label="Movie" />}
+        /> </Grid>
+    
+
+    <Grid item xs={4}>   
+       <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options={["Askmo","sdae"]}
+          sx={{ width: "100%" }}
+          renderInput={(params) => <TextField {...params} size="small" label="Movie" />}
+        /> </Grid>
+
+<Grid item xs={4}>   
+       <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options={["Askmo","sdae"]}
+          sx={{ width: "100%" }}
+          renderInput={(params) => <TextField {...params} size="small" label="Movie" />}
+        /> </Grid>
+
+
+<Grid item xs={4}>   
+       <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options={["Askmo","sdae"]}
+          sx={{ width: "100%" }}
+          renderInput={(params) => <TextField {...params} size="small" label="Movie" />}
+        /> </Grid>  
+
+
+         <Grid item xs={4}>   
+       <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options={["Askmo","sdae"]}
+          sx={{ width: "100%" }}
+          renderInput={(params) => <TextField {...params} size="small" label="Movie" />}
+        /> </Grid>
+ 
+
+
+    </Grid>
+    
+   
+
+   <Grid item xs={11}> <Box > 
+    <Typography variant='p' sx={{my:2}}> Settings</Typography>
+    <Divider  sx={{my:2}}></Divider>
+     </Box> </Grid>
+
+     <Grid item xs={11}> <Box > 
+    <Typography variant='p' sx={{my:2}}> Fee</Typography>
+   
+     </Box> </Grid>
+
+    
+    <Grid container item xs={11} columnSpacing={2} justifyContent="space-between">
+
+      <Grid item xs={3}>  <TextField fullWidth  size="small" label="Movie" /></Grid>
+      <Grid item xs={2}>  <Autocomplete
+          disablePortal
+          id="combo-box-demo23"
+          options={["Askmo","sdae"]}
+          sx={{ width: "100%" }}
+          renderInput={(params) => <TextField {...params} size="small" label="Movie23" />}
+        /></Grid>
+
+<Grid item xs={3}>  <Autocomplete
+          disablePortal
+          id="combo-box-demo23"
+          options={["Askmo","sdae"]}
+          sx={{ width: "100%" }}
+          renderInput={(params) => <TextField {...params} size="small" label="Movie23" />}
+        /></Grid>
+
+<Grid item xs={1}>  <TextField  size="small" label="Movie" /></Grid>
+
+<Grid item xs={2}>  <Autocomplete
+          disablePortal
+          id="combo-box-demo23"
+          options={["Askmo","sdae"]}
+          sx={{ width: "100%" }}
+          renderInput={(params) => <TextField {...params} size="small" label="Movie23" />}
+        /></Grid>
+        
+    <Grid item xs={1}  >
+
+    <Button variant="outlined" sx={{height:"100%"}} fullWidth>
+       <DeleteOutlineOutlinedIcon  />
+      </Button>
+       
+    {/* <IconButton aria-label="delete">
+        <DeleteOutlineOutlinedIcon> </DeleteOutlineOutlinedIcon>
+      </IconButton> */}
+    </Grid>
+
+
+    </Grid>
+    
+
+    <Grid container item xs={11} columnSpacing={2}>
+
+      <Grid item xs={3}>  <TextField fullWidth  size="small" label="Movie" /></Grid>
+      <Grid item xs={2}>  <Autocomplete
+          disablePortal
+          id="combo-box-demo23"
+          options={["Askmo","sdae"]}
+          sx={{ width: "100%" }}
+          renderInput={(params) => <TextField {...params} size="small" label="Movie23" />}
+        /></Grid>
+
+<Grid item xs={3}>  <Autocomplete
+          disablePortal
+          id="combo-box-demo23"
+          options={["Askmo","sdae"]}
+          sx={{ width: "100%" }}
+          renderInput={(params) => <TextField {...params} size="small" label="Movie23" />}
+        /></Grid>
+
+<Grid item xs={1}>  <TextField  size="small" label="Movie" /></Grid>
+
+<Grid item xs={2}>  <Autocomplete
+          disablePortal
+          id="combo-box-demo23"
+          options={["Askmo","sdae"]}
+          sx={{ width: "100%" }}
+          renderInput={(params) => <TextField {...params} size="small" label="Movie23" />}
+        /></Grid>
+        
+    <Grid item xs={1} >
+
+    <Button variant="outlined" sx={{height:"100%"}} fullWidth >
+       <DeleteOutlineOutlinedIcon  />
+      </Button>
+       
+    {/* <IconButton aria-label="delete">
+        <DeleteOutlineOutlinedIcon> </DeleteOutlineOutlinedIcon>
+      </IconButton> */}
+    </Grid>
+
+
+    </Grid>
+
+    <Grid container item xs={11} columnSpacing={2}>
+
+<Grid item xs={3}>  <TextField fullWidth  size="small" label="Movie" /></Grid>
+<Grid item xs={2}>  <Autocomplete
+    disablePortal
+    id="combo-box-demo23"
+    options={["Askmo","sdae"]}
+    sx={{ width: "100%" }}
+    renderInput={(params) => <TextField {...params} size="small" label="Movie23" />}
+  /></Grid>
+
+<Grid item xs={3}>  <Autocomplete
+    disablePortal
+    id="combo-box-demo23"
+    options={["Askmo","sdae"]}
+    sx={{ width: "100%" }}
+    renderInput={(params) => <TextField {...params} size="small" label="Movie23" />}
+  /></Grid>
+
+<Grid item xs={1}>  <TextField  size="small" label="Movie" /></Grid>
+
+<Grid item xs={2}>  <Autocomplete
+    disablePortal
+    id="combo-box-demo23"
+    options={["Askmo","sdae"]}
+    sx={{ width: "100%" }}
+    renderInput={(params) => <TextField {...params} size="small" label="Movie23" />}
+  /></Grid>
+  
+<Grid item xs={1} >
+
+<Button fullWidth variant="outlined" sx={{height:"100%"}} >
+ <DeleteOutlineOutlinedIcon  />
+</Button>
+ 
+{/* <IconButton aria-label="delete">
+  <DeleteOutlineOutlinedIcon> </DeleteOutlineOutlinedIcon>
+</IconButton> */}
+</Grid>
+
+
+</Grid>
+ 
+ <Grid container item  xs={11}>
+  <Grid item xs={12}>   <Button size='large' sx={{width:"100%"}} fullWidth variant="outlined" > Add fee</Button> </Grid>
+
+ </Grid>
+
+
     
     </Grid>
 
@@ -128,6 +392,8 @@ const Layout = () => {
     
   </Grid>
 </Box>
+
+
     </>
   )
 }
@@ -138,52 +404,3 @@ export default Layout
 
 
 
-{/* <Grid item xs={"auto"} > 
-
- style={{height:"80vh", display:"flex",flexDirection:"column", borderRadius:"5px",
- justifyContent:"space-between" }}
-
- <Box sx={{bgcolor:"black"}}> 
-
-<Box> <ListAltIcon sx={{px:2,py:10,color:"white"}}></ListAltIcon> </Box>
-
-<Box> <TuneIcon sx={{px:2,py:10,color:"white"}}></TuneIcon> </Box>
-
- <Box>  <PersonOutlineIcon sx={{px:2,py:10,color:"white"}}></PersonOutlineIcon>  </Box>
-
- </Box>  
-
-  </Grid>
-
-
-<Grid item   xs={8}  sx={{ backgroundColor:"#FFFFFF",
- borderRadius:"5px"}} > 
-
-  <Grid item xs={12} >
-    <Box sx={{display:"flex" , justifyContent:"space-between",alignItems:"center",boxShadow:1,borderRadius:1,p:1 }}>
-      <Typography variant='h4'> Configuration </Typography>
-      <Button variant="contained">Contained</Button>
-
-    </Box>
-</Grid>
-
-
-<Grid item xs={12}>
-
-<StyledTabs
-        sx={{ borderRadius: 2 , bgcolor:"#F3F3F3" }}
-        value={value}
-        onChange={handleChange}
-        aria-label="styled tabs example" >
-
-        <StyledTab label="Workflows" />
-        <StyledTab label="Datasets" />
-        <StyledTab label="Datasets" />
-      
-      </StyledTabs>
-
-
-</Grid> 
-
-
-//  </Grid> */}

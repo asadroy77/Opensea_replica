@@ -18,10 +18,11 @@ function App() {
   return (<>    
   
   <ThemeProvider theme={customeTheme}>
-    {/* <div>
+    <div>
       <Navbar ></Navbar>
       <Home></Home>
       
+      {/* 
 
       <Box sx={{backgroundImage:customeColours.gradient ,width:"200px",height:"200px"}}> MAIN </Box>
      
@@ -37,7 +38,7 @@ function App() {
 
      <Layout> </Layout> 
      
-      
+      </div>
 
     </ThemeProvider>
 

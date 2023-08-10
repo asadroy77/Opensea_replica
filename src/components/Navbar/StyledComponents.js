@@ -24,7 +24,7 @@ export const StyledSearchInput = styled(TextField)(({ theme }) => ({
         border: 'none',
       },
     },
-    cursor: 'auto',
+  
   }));
 
 
@@ -33,13 +33,14 @@ export const Search = styled('div')(({ theme }) => ({
     borderRadius: theme.shape.borderRadius,
     justifyContent:"center",
     alignItems:"center",
-    backgroundColor: "grey",
+    backgroundColor: "rgba(255, 255, 255, 0.12)",
     '&:hover': {
-      backgroundColor: "FFFFFFF",
+      backgroundColor: "rgba(255, 255, 255, 0.3)",
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
     borderRadius:"10px",
+    
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(3),
@@ -73,11 +74,12 @@ export  const SearchIconWrapper = styled('div')(({ theme }) => ({
   }));
   
 export  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
+     color:"white",
     '& .MuiInputBase-input': {
       padding: theme.spacing(1, 1, 1, 0),
       // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+      
       
       width: '100%',
       [theme.breakpoints.up('md')]: {

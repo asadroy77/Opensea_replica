@@ -154,6 +154,7 @@ const Home = () => {
       { id:7, rank: 7, name: 'Clifford',image:"favicon.png", fprice: 'Ferrara', volume: 44 },
       { id:8, rank: 8, name: 'Frances',image:"favicon.png", fprice: 'Rossini', volume: 36 },
       { id:9, rank: 9, name: 'Roxie',image:"favicon.png", fprice: 'Harvey', volume: 65 },
+      { id:9, rank: 9, name: 'Roxie',image:"favicon.png", fprice: 'Harvey', volume: 65 },
     ];
 
   const responsive = {
@@ -316,17 +317,19 @@ alignItems:"center", width:"100%"}}>
 <Grid item >
   
 <Grid container > 
-  <Grid item xs={12} md={12} lg={6}>
+  <Grid item xs={12} >
 
   <DataGrid
         sx={{
           
           '& .MuiDataGrid-root': {
             border: 'none',
+            width:"100%",
+           
             
           },
           "& .MuiDataGrid-columnSeparator":{display:"none"},
-          '& .MuiDataGrid-row':{ maxHeight:"80px !important"},
+          '& .MuiDataGrid-row':{ maxHeight:"80px !important",pb:"6px"},
           '& .MuiDataGrid-row:focus': {
             border: 'none',
           },
@@ -345,6 +348,7 @@ alignItems:"center", width:"100%"}}>
         }}
 
         hideFooter
+       
         autoHeight
         disableRowSelectionOnClick={false}
         rows={rows}
@@ -352,11 +356,11 @@ alignItems:"center", width:"100%"}}>
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 10,
+              pageSize: 12,
             },
           },
         }}
-        pageSizeOptions={[10]}
+        pageSizeOptions={[12]} 
        disableColumnMenu
        showCellVerticalBorder={false}
        showColumnVerticalBorder={false}
@@ -367,7 +371,7 @@ alignItems:"center", width:"100%"}}>
   </Grid>
 
 
-  <Grid item xs={12} md={12} lg={6}>
+  {/* <Grid item xs={12} md={12} lg={6}>
   <DataGrid
         autoHeight
         rows={rows}
@@ -381,9 +385,9 @@ alignItems:"center", width:"100%"}}>
         }}
         pageSizeOptions={[5]} 
      disableColumnMenu
-      />
+      /> */}
     
-  </Grid>
+  {/* </Grid> */}
   </Grid>
 </Grid>
 
