@@ -375,9 +375,7 @@ const Layout = () => {
  <DeleteOutlineOutlinedIcon  />
 </Button>
  
-{/* <IconButton aria-label="delete">
-  <DeleteOutlineOutlinedIcon> </DeleteOutlineOutlinedIcon>
-</IconButton> */}
+
 </Grid>
 
 
@@ -394,7 +392,7 @@ const Layout = () => {
 
     </Box>
 
-    {/* </Grid> */}
+
     
   
 </Box>
