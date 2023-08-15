@@ -13,7 +13,8 @@ export default function MediaCard({url,mediatitle}) {
     <Box sx={{display:"flex"}}> 
     <Card sx={{ 
    height:400,
-   width:"90%",
+   width:"100%",
+   mx:"5px",
    position:"relative",
    backgroundImage: `url("download.jpg")`,
    backgroundPosition: "center",

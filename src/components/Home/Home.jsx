@@ -18,7 +18,45 @@ import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import Slider from "react-slick";
 
+
+
+
+var settings = {
+  dots: true,
+  infinite: false,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  initialSlide: 0,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        initialSlide: 2
+      }
+    },
+    {
+      breakpoint: 520,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
+};
 
 const CusExpandMoreOutlinedIcon = styled(ExpandMoreOutlinedIcon)(({ open }) => ({
     // ...(!open && {
@@ -220,9 +258,9 @@ alignItems:"center", width:"100%"}}>
 
 {/* item 2 */}
    <Grid item  sx={{display:"flex",justifyContent:"center",my:5}} > 
-<Box sx={{width:"80vw"}}> 
+<Box sx={{width:"80vw",".slick-arrow":{backgroundColor:"grey",borderRadius:"15px",border:"1px solid grey"} }}> 
 
-<Carousel
+{/* <Carousel
  
   showDots={true}
   responsive={responsive}
@@ -243,7 +281,27 @@ alignItems:"center", width:"100%"}}>
  <MediaCard></MediaCard>
  <MediaCard></MediaCard>
  
-  </Carousel>
+  </Carousel> */}
+
+<Slider {...settings} >
+         
+          <MediaCard></MediaCard>
+          <MediaCard></MediaCard>
+          <MediaCard></MediaCard>
+          <MediaCard></MediaCard>
+          <MediaCard></MediaCard>
+          <MediaCard></MediaCard>
+          <MediaCard></MediaCard> 
+           <MediaCard></MediaCard>
+          <MediaCard></MediaCard> 
+           <MediaCard></MediaCard>
+          <MediaCard></MediaCard>
+          
+</Slider>
+
+
+
+
 
 </Box>
   
@@ -314,19 +372,18 @@ alignItems:"center", width:"100%"}}>
 </Grid>
 
 
-<Grid item >
+<Grid item sx={{width:"100%"}} >
   
-<Grid container > 
-  <Grid item xs={12} >
+<Grid container item xs={12} sx={{ overflowX: 'auto' }} > 
+  <Grid item  >
 
   <DataGrid
         sx={{
           
           '& .MuiDataGrid-root': {
             border: 'none',
-            width:"100%",
+            overflowX:"scroll"
            
-            
           },
           "& .MuiDataGrid-columnSeparator":{display:"none"},
           '& .MuiDataGrid-row':{ maxHeight:"80px !important",pb:"6px"},
@@ -348,7 +405,6 @@ alignItems:"center", width:"100%"}}>
         }}
 
         hideFooter
-       
         autoHeight
         disableRowSelectionOnClick={false}
         rows={rows}

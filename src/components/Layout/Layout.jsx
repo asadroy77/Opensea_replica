@@ -118,13 +118,16 @@ const Layout = () => {
 
   // "#EBECF1"
 
-  return (<>  <Box sx={{ width: '100%',bgcolor:"#EBECF1",my:5 }}>
-  <Grid container   columnSpacing={1}>
-    <Grid item >
+  return (<>  <Box sx={{display:"flex",width:'100%',bgcolor:"#EBECF1",my:5 }}>
+ 
+    <Box >
       <StyledBox onClick={handleChange2} prop1={value2} sx={{background:customeColours.gradient,height:"100vh",borderRadius:"5px",display:'flex',
     flexDirection:"column" , justifyContent:"space-between"}}>
 
-         <Box > <ListAltIcon sx={{color:"white",py:2,px:2}}></ListAltIcon> </Box>
+         <Box > 
+         <IconButton   size="small" >
+         <ListAltIcon sx={{color:"white",py:2,px:2}}></ListAltIcon> </IconButton>
+         </Box>
 
       <Box sx={{display:"flex"}}>
          <Box>
@@ -142,15 +145,18 @@ const Layout = () => {
        </Box>
        </Box>
 
-      <Box>  <PersonOutlineIcon sx={{color:"white",py:2,px:2}}></PersonOutlineIcon>  </Box>
+      <Box>
+      <IconButton   size="small" >
+      <PersonOutlineIcon sx={{color:"white",py:2,px:2}}></PersonOutlineIcon></IconButton> 
+           </Box>
  </StyledBox>
-    </Grid>
+    </Box>
 
     
-    <Grid item xs={10} sx={{borderRadius:"5px"}}>
-      <Box  sx={{ bgcolor:"#FFFFFF",borderRadius:"5px",height:"100%"}}>
+    {/* <Grid item xs={10} sx={{borderRadius:"5px"}}> */}
+      <Box  sx={{ bgcolor:"#FFFFFF",borderRadius:"5px"}}>
 
-    <Grid container item rowSpacing={1}  justifyContent="center"  >
+    <Grid container  rowSpacing={1}  justifyContent="center"  >
 
      <Grid item  xs={11}>
       <Box sx={{borderRadius:"5px",display:"flex",justifyContent:"space-between" }}> 
@@ -388,9 +394,9 @@ const Layout = () => {
 
     </Box>
 
-    </Grid>
+    {/* </Grid> */}
     
-  </Grid>
+  
 </Box>
 
 
