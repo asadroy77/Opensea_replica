@@ -179,7 +179,7 @@ const Navbar = () => {
         </Toolbar>
         <BasicModal open={open} setOpen={setOpen} handleOpen={handleOpen} handleClose={handleClose}></BasicModal>
     </AppBar>
-    {/* <Box> </Box> */}
+    
     
     </>
   )
