@@ -288,9 +288,7 @@ const Layout = () => {
        <DeleteOutlineOutlinedIcon  />
       </Button>
        
-    {/* <IconButton aria-label="delete">
-        <DeleteOutlineOutlinedIcon> </DeleteOutlineOutlinedIcon>
-      </IconButton> */}
+    
     </Grid>
 
 
@@ -332,9 +330,7 @@ const Layout = () => {
        <DeleteOutlineOutlinedIcon  />
       </Button>
        
-    {/* <IconButton aria-label="delete">
-        <DeleteOutlineOutlinedIcon> </DeleteOutlineOutlinedIcon>
-      </IconButton> */}
+   
     </Grid>
 
 
@@ -382,11 +378,12 @@ const Layout = () => {
 </Grid>
  
  <Grid container item  xs={11}>
-  <Grid item xs={12}>   <Button size='large' sx={{width:"100%"}} fullWidth variant="outlined" > Add fee</Button> </Grid>
+  <Grid item xs={12}> 
+    <Button size='large' sx={{width:"100%"}} fullWidth variant="outlined" > Add fee</Button> </Grid>
 
  </Grid>
 
-{/* </Grid>*/}
+
     
     </Grid>
 

@@ -132,9 +132,20 @@ const Home = () => {
 
   const sm = useMediaQuery(theme.breakpoints.down("sm"))
 
- console.log("md" + md)
- console.log("sm" + sm)
- 
+  const data = [
+    { id:1, rank: 1, name: "james"  ,image:"favicon.png", fprice: 'Jon', volume: 35 },
+    { id:2, rank: 6, name: 'Lannister',image:"favicon.png", fprice: 'Cersei', volume: 42 },
+    { id:3, rank: 1, name: 'Lannister',image:"favicon.png", fprice: 'Jaime', volume: 45 },
+    { id:4, rank: 4, name: 'Stark',image:"favicon.png", fprice: 'Arya', volume: 16 },
+    { id:5, rank: 6, name: 'Targaryen',image:"favicon.png", fprice: 'Daenerys', volume: 68 },
+    { id:6, rank: 7, name: 'Melisandre',image:"favicon.png", fprice: null, volume: 150 },
+    { id:7, rank: 7, name: 'Clifford',image:"favicon.png", fprice: 'Ferrara', volume: 44 },
+    { id:8, rank: 24, name: 'Frances',image:"favicon.png", fprice: 'Rossini', volume: 36 },
+    { id:9, rank: 6, name: 'Roxie',image:"favicon.png", fprice: 'Harvey', volume: 65 },
+    { id:19, rank: 24, name: 'Roxie',image:"favicon.png", fprice: 'Harvey', volume: 65 },
+  ]
+
+  const [rows, setRows] = React.useState(data );
 
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -148,16 +159,20 @@ const Home = () => {
    
   };
 
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState("workflows");
 
   const handleChange = (event, newValue) => {
+
+    // console.log("tab changed")
+    // console.log(newValue)
     setValue(newValue);
   };
 
 
-  const [value1, setValue1] = React.useState(0);
+  const [value1, setValue1] = React.useState(1);
 
   const handleChange1 = (event, newValue) => {
+    setRows(()=> data.filter(item=> item.rank == newValue ) )
     setValue1(newValue);
   };
 
@@ -182,18 +197,7 @@ const Home = () => {
     filterable: false } ]
 
 
-    const rows = [
-      { id:1, rank: 1, name: "james"  ,image:"favicon.png", fprice: 'Jon', volume: 35 },
-      { id:2, rank: 2, name: 'Lannister',image:"favicon.png", fprice: 'Cersei', volume: 42 },
-      { id:3, rank: 3, name: 'Lannister',image:"favicon.png", fprice: 'Jaime', volume: 45 },
-      { id:4, rank: 4, name: 'Stark',image:"favicon.png", fprice: 'Arya', volume: 16 },
-      { id:5, rank: 5, name: 'Targaryen',image:"favicon.png", fprice: 'Daenerys', volume: 68 },
-      { id:6, rank: 6, name: 'Melisandre',image:"favicon.png", fprice: null, volume: 150 },
-      { id:7, rank: 7, name: 'Clifford',image:"favicon.png", fprice: 'Ferrara', volume: 44 },
-      { id:8, rank: 8, name: 'Frances',image:"favicon.png", fprice: 'Rossini', volume: 36 },
-      { id:9, rank: 9, name: 'Roxie',image:"favicon.png", fprice: 'Harvey', volume: 65 },
-      { id:9, rank: 9, name: 'Roxie',image:"favicon.png", fprice: 'Harvey', volume: 65 },
-    ];
+    
 
   const responsive = {
     desktop: {
@@ -246,9 +250,9 @@ alignItems:"center", width:"100%"}}>
           <Box sx={{width:  sm ? "85vw":"70vw",borderRadius:5,overflow: "hidden",my:5 }}>
         <iframe width="100%" height="315" 
         src="https://www.youtube.com/embed/rrLAg7xNERA?controls=0"
-        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+        title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
         border-radius: 20px;
-        gyroscope; picture-in-picture; web-share" allowfullscreen> </iframe>
+        gyroscope; picture-in-picture; web-share" allowFullScreen > </iframe>
 
         </Box>
 
@@ -315,8 +319,8 @@ alignItems:"center", width:"100%"}}>
           onChange={handleChange}
           aria-label="styled tabs example" >
 
-          <StyledTab label="Workflows" />
-          <StyledTab label="Datasets" />
+          <StyledTab value="workflows"  label="Workflows" />
+          <StyledTab value="datasets" label="Datasets" />
          
         </StyledTabs>
     
@@ -331,10 +335,10 @@ alignItems:"center", width:"100%"}}>
           aria-label="styled tabs example"
           
         >
-          <StyledTab label="1h" />
-          <StyledTab label="6h" />
-          <StyledTab label="7h" />
-          <StyledTab label="24h" />
+          <StyledTab value={1} label="1h" />
+          <StyledTab  value={6} label="6h" />
+          <StyledTab value={7} label="7h" />
+          <StyledTab value={24} label="24h" />
          
         </StyledTabs>
 </Box>
@@ -372,10 +376,10 @@ alignItems:"center", width:"100%"}}>
 </Grid>
 
 
-<Grid item sx={{width:"100%"}} >
+<Grid item  xs={12} >
   
 <Grid container item xs={12} sx={{ overflowX: 'auto' }} > 
-  <Grid item  >
+  
 
   <DataGrid
         sx={{
@@ -405,7 +409,7 @@ alignItems:"center", width:"100%"}}>
         }}
 
         hideFooter
-        autoHeight
+       
         disableRowSelectionOnClick={false}
         rows={rows}
         columns={columns}
@@ -442,9 +446,10 @@ alignItems:"center", width:"100%"}}>
         pageSizeOptions={[5]} 
      disableColumnMenu
       /> */}
+      {/* passwprd */}
     
   {/* </Grid> */}
-  </Grid>
+ 
 </Grid>
 
 </Grid>
