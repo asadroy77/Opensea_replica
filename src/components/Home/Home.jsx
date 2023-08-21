@@ -19,7 +19,33 @@ import Toolbar from '@mui/material/Toolbar';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Slider from "react-slick";
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import "./Home.css";
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
+
+
+
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  console.log(props)
+  return (
+    <div
+      className={className}
+      style={{ ...style, background:"black",borderRadius:"20px",display:"flex",justifyContent:"center",alignItems:"center" }}
+      onClick={onClick}> <NavigateNextIcon sx={{color:"white"}}/> </div>
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style,background:"black",borderRadius:"20px",display:"flex",justifyContent:"center",alignItems:"center" }}
+      onClick={onClick}> <NavigateBeforeIcon sx={{color:"white"}} /> </div>
+  );
+}
 
 
 
@@ -30,6 +56,8 @@ var settings = {
   slidesToShow: 4,
   slidesToScroll: 4,
   initialSlide: 0,
+  nextArrow: <SampleNextArrow />,
+  prevArrow: <SamplePrevArrow />,
   responsive: [
     {
       breakpoint: 1024,
@@ -169,11 +197,17 @@ const Home = () => {
   };
 
 
-  const [value1, setValue1] = React.useState(1);
+  const [value1, setValue1] = React.useState(0);
 
   const handleChange1 = (event, newValue) => {
-    setRows(()=> data.filter(item=> item.rank == newValue ) )
-    setValue1(newValue);
+    if(newValue==0){
+      setRows(data)
+      setValue1(newValue);
+    }else{
+      setRows(()=> data.filter(item=> item.rank == newValue ) )
+      setValue1(newValue);
+    }
+    
   };
 
  
@@ -262,30 +296,12 @@ alignItems:"center", width:"100%"}}>
 
 {/* item 2 */}
    <Grid item  sx={{display:"flex",justifyContent:"center",my:5}} > 
-<Box sx={{width:"80vw",".slick-arrow":{backgroundColor:"grey",borderRadius:"15px",border:"1px solid grey"} }}> 
+<Box sx={{width:"80vw" }}> 
 
-{/* <Carousel
- 
-  showDots={true}
-  responsive={responsive}
-  infinite={true}
-  autoPlaySpeed={1000}
-  keyBoardControl={true}
-  // renderButtonGroupOutside={true}
-  containerClass="carousel-container"
-  removeArrowOnDeviceType={["tablet", "mobile"]}
-  dotListClass="custom-dot-list-style"
-  itemClass="carousel-item-padding-20-px"
-  
->
-  
- <MediaCard></MediaCard>
- <MediaCard></MediaCard>
- <MediaCard></MediaCard>
- <MediaCard></MediaCard>
- <MediaCard></MediaCard>
- 
-  </Carousel> */}
+
+{/* ".slick-arrow":{backgroundColor:"grey",borderRadius:"15px",border:"1px solid grey"} */}
+
+
 
 <Slider {...settings} >
          
@@ -332,13 +348,13 @@ alignItems:"center", width:"100%"}}>
           sx={{ borderRadius: 2 , bgcolor:"#F3F3F3"}}
           value={value1}
           onChange={handleChange1}
-          aria-label="styled tabs example"
-          
-        >
-          <StyledTab value={1} label="1h" />
-          <StyledTab  value={6} label="6h" />
-          <StyledTab value={7} label="7h" />
-          <StyledTab value={24} label="24h" />
+          aria-label="styled tabs example" >
+
+          <StyledTab value={1} label="1" />
+          <StyledTab  value={6} label="6" />
+          <StyledTab value={7} label="7" />
+          <StyledTab value={24} label="24" />
+          <StyledTab value={0} label="ALL" />
          
         </StyledTabs>
 </Box>

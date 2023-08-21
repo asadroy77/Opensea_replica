@@ -1,0 +1,9 @@
+/* Hide the ::before pseudo-element added by Slick's next arrow */
+.slick-next::before {
+    display: none !important;
+  }
+  
+  /* Hide the ::before pseudo-element added by Slick's previous arrow */
+ .slick-prev::before {
+    display: none !important;
+  }
