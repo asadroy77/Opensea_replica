@@ -10,6 +10,7 @@ import { useTheme } from '@mui/material/styles';
 import { customeColours } from "./Theme/Theme";
 import Layout from "./components/Layout/Layout";
 import { Mytheme } from "./Theme/Theme1";
+import Form1 from "./components/Forms/Form1";
 
 
 
@@ -19,8 +20,8 @@ function App() {
   
   <ThemeProvider theme={customeTheme}>
     <div>
-      <Navbar ></Navbar>
-      <Home></Home>
+      {/* <Navbar ></Navbar> */}
+      {/* <Home></Home> */}
       
       {/* 
 
@@ -36,7 +37,8 @@ function App() {
     </div> */}
 
 
-     <Layout> </Layout> 
+     {/* <Layout> </Layout>  */}
+     <Form1></Form1>
      
       </div>
 

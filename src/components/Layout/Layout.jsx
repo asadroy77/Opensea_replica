@@ -379,7 +379,7 @@ const Layout = () => {
  
  <Grid container item  xs={11}>
   <Grid item xs={12}> 
-    <Button size='large' sx={{width:"100%"}} fullWidth variant="outlined" > Add fee</Button> </Grid>
+    <Button size='large'  fullWidth variant="outlined" > Add fee</Button> </Grid>
 
  </Grid>
 
