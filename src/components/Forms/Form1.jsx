@@ -186,7 +186,7 @@ const Form1 = () => {
             
             let resp = await axios.post('https://dummy.restapiexample.com/api/v1/create',{name:data.first_name,salary:"123",age:"23"});
          
-        // console.log(resp)
+        console.log(resp)
         }
         catch(e){
             console.log(e);
