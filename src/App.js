@@ -20,8 +20,8 @@ function App() {
   
   <ThemeProvider theme={customeTheme}>
     <div>
-      {/* <Navbar ></Navbar> */}
-      {/* <Home></Home> */}
+      {/* <Navbar ></Navbar> 
+      <Home></Home> */}
       
       {/* 
 
@@ -38,8 +38,8 @@ function App() {
     </div> */}
 
 
-     {/* <Layout> </Layout>  */}
-     <Form1></Form1>
+     <Layout> </Layout> 
+     {/* <Form1></Form1> */}
      
       </div>
 
