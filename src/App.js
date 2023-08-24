@@ -24,7 +24,7 @@ function App() {
       <Home></Home>
       
       {/* 
-   vgvhhjkjk
+   
       <Box sx={{backgroundImage:customeColours.gradient ,width:"200px",height:"200px"}}> MAIN </Box>
      
       <Box sx={{bgcolor: (theme) => theme.palette.primary.main ,width:"200px",height:"200px"}}>  light </Box>
