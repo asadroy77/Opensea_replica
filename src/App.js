@@ -20,8 +20,8 @@ function App() {
   
   <ThemeProvider theme={customeTheme}>
     <div>
-      {/* <Navbar ></Navbar> 
-      <Home></Home> */}
+      <Navbar ></Navbar> 
+      <Home></Home>
       
       {/* 
 
